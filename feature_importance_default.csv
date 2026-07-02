@@ -1,0 +1,22 @@
+Feature,Importance_Score
+previous_loan_defaults_on_file_Yes,0.40412355050609317
+person_income,0.14114903142085525
+Income_per_Emp_Year,0.08300901934204165
+credit_score,0.078337949820898
+person_home_ownership_RENT,0.054028180777949505
+Credit_History_per_Age,0.04925801952143466
+person_age,0.038957289487874774
+person_emp_exp,0.037639293912192666
+cb_person_cred_hist_length,0.02704210554619987
+person_gender_male,0.011382575332233079
+loan_intent_VENTURE,0.010869425802842236
+person_home_ownership_OWN,0.010193845359054463
+person_education_Bachelor,0.009030472100784724
+person_education_High School,0.008153946633793463
+loan_intent_EDUCATION,0.008132038858097206
+loan_intent_MEDICAL,0.0069947270969908555
+person_education_Master,0.006853490641075115
+loan_intent_PERSONAL,0.006617965768797874
+loan_intent_HOMEIMPROVEMENT,0.005826169749401986
+person_education_Doctorate,0.001721452010679071
+person_home_ownership_OTHER,0.000679450310710491

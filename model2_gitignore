@@ -1,0 +1,33 @@
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Python
+__pycache__/
+*.py[cod]
+.env
+venv/
+env/
+
+# Generated outputs (recreated by running the notebook/script)
+bank_loan_tableau_export.csv
+feature_importance_tableau.csv
+model_comparison.png
+feature_importance.png
+actual_vs_predicted.png
+residual_plot.png
+distribution.png
+loan_amount_dist.png
+correlation_heatmap.png
+correlation_target.png
+scatter_plots.png
+boxplots.png
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
