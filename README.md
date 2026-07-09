@@ -1,5 +1,7 @@
 # 🏦 Loan Default Prediction
 
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Streamlit_App-FF4B4B?style=for-the-badge)](https://bankloan-default-prediction-cyc3udhusr7tr57pc8wnfq.streamlit.app)
+
 **Binary classification model predicting whether a customer will default on a loan, using only pre-application customer attributes.**
 
 > Part of a 5-model series on the same dataset (`loan_data.csv`), each answering a different business question. This repo covers **loan default prediction** only. A combined README comparing all 5 models will be published separately once every model is completed.
