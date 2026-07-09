@@ -1,0 +1,140 @@
+============================================================
+1. LOAD DATA
+============================================================
+Shape: (45000, 14)
+Columns: ['person_age', 'person_gender', 'person_education', 'person_income', 'person_emp_exp', 'person_home_ownership', 'loan_amnt', 'loan_intent', 'loan_int_rate', 'loan_percent_income', 'cb_person_cred_hist_length', 'credit_score', 'previous_loan_defaults_on_file', 'loan_status']
+
+Target distribution (loan_status):
+loan_status
+0    35000
+1    10000
+Name: count, dtype: int64
+loan_status
+0    0.7778
+1    0.2222
+Name: proportion, dtype: float64
+
+============================================================
+2. PREPROCESSING
+============================================================
+After dropping leakage columns: (45000, 11)
+Missing values: 0
+After encoding: (45000, 20)
+✅ All columns numeric
+
+============================================================
+3. FEATURE ENGINEERING
+============================================================
+New features: Income_per_Emp_Year, Credit_History_per_Age
+
+============================================================
+4. TRAIN-TEST SPLIT & SCALING
+============================================================
+Train: (36000, 21) | Test: (9000, 21)
+✅ No index overlap
+Train class balance:
+loan_status
+0    0.7778
+1    0.2222
+Name: proportion, dtype: float64
+Test class balance:
+loan_status
+0    0.7778
+1    0.2222
+Name: proportion, dtype: float64
+✅ Scaling complete — fit on X_train only
+
+============================================================
+5. MODEL TRAINING & EVALUATION
+============================================================
+
+📊 Logistic Regression:
+   Accuracy  :   0.8038
+   Precision :   0.5328
+   Recall    :   0.9515
+   F1-Score  :   0.6831
+   AUC-ROC   :   0.9154
+   Confusion Matrix:
+    [[5331 1669]
+ [  97 1903]]
+---------------------------------------------
+
+📊 Random Forest:
+   Accuracy  :   0.8451
+   Precision :   0.6168
+   Recall    :   0.8000
+   F1-Score  :   0.6966
+   AUC-ROC   :   0.9235
+   Confusion Matrix:
+    [[6006  994]
+ [ 400 1600]]
+---------------------------------------------
+
+📊 XGBoost:
+   Accuracy  :   0.8466
+   Precision :   0.6035
+   Recall    :   0.9025
+   F1-Score  :   0.7233
+   AUC-ROC   :   0.9353
+   Confusion Matrix:
+    [[5814 1186]
+ [ 195 1805]]
+---------------------------------------------
+
+📊 Final Model Comparison:
+                     Accuracy  Precision  Recall      F1  AUC_ROC
+Model                                                            
+Logistic Regression    0.8038     0.5328  0.9515  0.6831   0.9154
+Random Forest          0.8451     0.6168  0.8000  0.6966   0.9235
+XGBoost                0.8466     0.6035  0.9025  0.7233   0.9353
+
+🏆 Best model by AUC-ROC: XGBoost
+
+Classification Report (Best Model):
+              precision    recall  f1-score   support
+
+  Repaid (0)       0.97      0.83      0.89      7000
+ Default (1)       0.60      0.90      0.72      2000
+
+    accuracy                           0.85      9000
+   macro avg       0.79      0.87      0.81      9000
+weighted avg       0.89      0.85      0.86      9000
+
+
+Cross-Validation AUC-ROC (XGBoost, 5-fold): 0.9349 ±0.0022
+
+============================================================
+6. FEATURE IMPORTANCE
+============================================================
+Top 10 Features (XGBoost):
+previous_loan_defaults_on_file_Yes    0.8908
+person_home_ownership_OWN             0.0255
+person_home_ownership_RENT            0.0222
+loan_intent_VENTURE                   0.0079
+person_income                         0.0071
+loan_intent_EDUCATION                 0.0060
+loan_intent_PERSONAL                  0.0050
+loan_intent_HOMEIMPROVEMENT           0.0050
+loan_intent_MEDICAL                   0.0047
+credit_score                          0.0030
+
+============================================================
+7. TABLEAU EXPORT
+============================================================
+✅ Exported: loan_default_tableau_export.csv (9,000 rows)
+✅ Exported: feature_importance_default.csv
+✅ Exported: model2_metrics_summary.csv
+✅ Exported: confusion_matrix_export.csv
+✅ Exported: roc_curve_export.csv
+
+============================================================
+8. SAVING VISUALIZATIONS
+============================================================
+✅ Saved: model2_comparison.png
+✅ Saved: confusion_matrix.png
+✅ Saved: roc_curve.png
+✅ Saved: feature_importance_default.png
+
+============================================================
+✅ ALL DONE
+============================================================

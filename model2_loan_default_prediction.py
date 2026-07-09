@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold
+from sklearn.base import clone
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
@@ -194,24 +195,29 @@ print(classification_report(y_test, y_pred_best, target_names=['Repaid (0)', 'De
 # 5-fold Stratified Cross-Validation on training set only (best model type)
 cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
 cv_scores = cross_val_score(
-    RandomForestClassifier(n_estimators=200, class_weight='balanced', random_state=42, n_jobs=-1),
-    X_train_scaled, y_train, cv=cv, scoring='roc_auc'
+    clone(best_model), X_train_scaled, y_train, cv=cv, scoring='roc_auc'
 )
-print(f"\nCross-Validation AUC-ROC (Random Forest, 5-fold): {cv_scores.mean():.4f} ±{cv_scores.std():.4f}")
+print(f"\nCross-Validation AUC-ROC ({best_model_name}, 5-fold): {cv_scores.mean():.4f} ±{cv_scores.std():.4f}")
 
 # ─────────────────────────────────────────────────────────────────
-# 6. FEATURE IMPORTANCE (from Random Forest — tree-based, interpretable)
+# 6. FEATURE IMPORTANCE (from the best model selected above)
 # ─────────────────────────────────────────────────────────────────
 print("\n" + "=" * 60)
 print("6. FEATURE IMPORTANCE")
 print("=" * 60)
 
+if hasattr(best_model, 'feature_importances_'):
+    importance_values = best_model.feature_importances_
+else:
+    # Logistic Regression has no feature_importances_; use |coefficient| as a proxy
+    importance_values = np.abs(best_model.coef_[0])
+
 feature_importance = pd.Series(
-    rf_clf.feature_importances_,
+    importance_values,
     index=X.columns
 ).sort_values(ascending=False)
 
-print("Top 10 Features:")
+print(f"Top 10 Features ({best_model_name}):")
 print(feature_importance.head(10).round(4).to_string())
 
 # ─────────────────────────────────────────────────────────────────
@@ -311,7 +317,7 @@ print("✅ Saved: roc_curve.png")
 # Feature importance
 plt.figure(figsize=(12, 7))
 feature_importance.head(15).plot(kind='bar', color='steelblue', edgecolor='black')
-plt.title('Top 15 Feature Importance — Random Forest', fontsize=13, fontweight='bold')
+plt.title(f'Top 15 Feature Importance — {best_model_name}', fontsize=13, fontweight='bold')
 plt.xlabel('Feature')
 plt.ylabel('Importance Score')
 plt.xticks(rotation=45, ha='right')

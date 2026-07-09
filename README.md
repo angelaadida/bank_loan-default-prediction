@@ -231,3 +231,9 @@ python model2_loan_default_prediction.py
 - [Scikit-learn: RandomForestClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html)
 - [XGBoost: XGBClassifier](https://xgboost.readthedocs.io/en/stable/python/python_api.html#xgboost.XGBClassifier)
 - [Tableau Public](https://public.tableau.com/)
+
+---
+
+## 📝 Update Log
+
+- **Refactored Cross-Validation and Feature Importance to dynamically use the best-performing model** (selected by AUC-ROC) instead of hardcoding Random Forest. The script now runs 5-fold cross-validation on `best_model` via `clone()`, and computes feature importance from `best_model.feature_importances_` (or `|coef_|` as a fallback for Logistic Regression) rather than always referencing `rf_clf`.
