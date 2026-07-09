@@ -12,6 +12,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import joblib
 
 from sklearn.model_selection import train_test_split, cross_val_score, StratifiedKFold
 from sklearn.base import clone
@@ -337,6 +338,22 @@ plt.tight_layout()
 plt.savefig('feature_importance_default.png', dpi=150, bbox_inches='tight')
 plt.close()
 print("✅ Saved: feature_importance_default.png")
+
+# ─────────────────────────────────────────────────────────────────
+# 9. SAVE MODEL FOR DEPLOYMENT (Streamlit app)
+# ─────────────────────────────────────────────────────────────────
+print("\n" + "=" * 60)
+print("9. SAVE MODEL FOR DEPLOYMENT")
+print("=" * 60)
+
+model_bundle = {
+    'model': best_model,
+    'scaler': scaler,
+    'feature_columns': X.columns.tolist(),
+    'model_name': best_model_name,
+}
+joblib.dump(model_bundle, 'loan_default_model.pkl')
+print("✅ Saved: loan_default_model.pkl (model + scaler + feature_columns)")
 
 print("\n" + "=" * 60)
 print("✅ ALL DONE")
