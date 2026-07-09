@@ -1,0 +1,9 @@
+# Runtime dependencies for app.py (Streamlit Cloud reads this file by default).
+# scikit-learn and xgboost are required even though app.py doesn't import them
+# directly — loan_default_model.pkl contains a StandardScaler and an
+# XGBClassifier, and joblib.load() needs both classes available to unpickle it.
+streamlit>=1.59.0
+pandas>=1.3.0
+joblib>=1.3.0
+scikit-learn>=1.0.0
+xgboost>=1.7.0
