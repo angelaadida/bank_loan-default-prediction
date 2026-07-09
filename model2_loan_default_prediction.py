@@ -19,6 +19,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
+from lightgbm import LGBMClassifier
 from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
     roc_auc_score, roc_curve, confusion_matrix, classification_report
@@ -171,10 +172,20 @@ xgb_clf.fit(X_train_scaled, y_train)
 y_pred_xgb = xgb_clf.predict(X_test_scaled)
 y_proba_xgb = xgb_clf.predict_proba(X_test_scaled)[:, 1]
 
+# Model 4: LightGBM Classifier — class_weight handles imbalance
+lgbm_clf = LGBMClassifier(
+    n_estimators=300, max_depth=6, learning_rate=0.1,
+    class_weight='balanced', random_state=42, n_jobs=-1, verbose=-1
+)
+lgbm_clf.fit(X_train_scaled, y_train)
+y_pred_lgbm = lgbm_clf.predict(X_test_scaled)
+y_proba_lgbm = lgbm_clf.predict_proba(X_test_scaled)[:, 1]
+
 results = []
 results.append(evaluate_model(y_test, y_pred_lr, y_proba_lr, "Logistic Regression"))
 results.append(evaluate_model(y_test, y_pred_rf, y_proba_rf, "Random Forest"))
 results.append(evaluate_model(y_test, y_pred_xgb, y_proba_xgb, "XGBoost"))
+results.append(evaluate_model(y_test, y_pred_lgbm, y_proba_lgbm, "LightGBM"))
 
 results_df = pd.DataFrame(results).set_index("Model")
 print("\n📊 Final Model Comparison:")
@@ -186,7 +197,8 @@ print(f"\n🏆 Best model by AUC-ROC: {best_model_name}")
 
 model_map = {"Logistic Regression": (log_reg, y_pred_lr, y_proba_lr),
              "Random Forest": (rf_clf, y_pred_rf, y_proba_rf),
-             "XGBoost": (xgb_clf, y_pred_xgb, y_proba_xgb)}
+             "XGBoost": (xgb_clf, y_pred_xgb, y_proba_xgb),
+             "LightGBM": (lgbm_clf, y_pred_lgbm, y_proba_lgbm)}
 best_model, y_pred_best, y_proba_best = model_map[best_model_name]
 
 print("\nClassification Report (Best Model):")
@@ -270,7 +282,7 @@ print("=" * 60)
 
 # Model comparison chart
 fig, axes = plt.subplots(1, 5, figsize=(22, 4.5))
-colors = ['tomato', 'steelblue', 'seagreen']
+colors = ['tomato', 'steelblue', 'seagreen', 'mediumpurple']
 for ax, metric in zip(axes, ['Accuracy', 'Precision', 'Recall', 'F1', 'AUC_ROC']):
     vals = results_df[metric]
     bars = ax.bar(vals.index, vals.values, color=colors[:len(vals)], edgecolor='black', width=0.5)

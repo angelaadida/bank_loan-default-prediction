@@ -81,12 +81,24 @@ Name: proportion, dtype: float64
  [ 195 1805]]
 ---------------------------------------------
 
+📊 LightGBM:
+   Accuracy  :   0.8441
+   Precision :   0.5991
+   Recall    :   0.9020
+   F1-Score  :   0.7200
+   AUC-ROC   :   0.9348
+   Confusion Matrix:
+    [[5793 1207]
+ [ 196 1804]]
+---------------------------------------------
+
 📊 Final Model Comparison:
                      Accuracy  Precision  Recall      F1  AUC_ROC
 Model                                                            
 Logistic Regression    0.8038     0.5328  0.9515  0.6831   0.9154
 Random Forest          0.8451     0.6168  0.8000  0.6966   0.9235
 XGBoost                0.8466     0.6035  0.9025  0.7233   0.9353
+LightGBM               0.8441     0.5991  0.9020  0.7200   0.9348
 
 🏆 Best model by AUC-ROC: XGBoost
 
