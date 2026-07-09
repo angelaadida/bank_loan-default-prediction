@@ -210,6 +210,25 @@ python model2_loan_default_prediction.py
 
 > Make sure `loan_data.csv` is in the same folder. `xgboost` is required — install with `pip install xgboost` if not already present.
 
+### Option C — Streamlit App
+
+```bash
+streamlit run app.py
+```
+
+> Loads the pre-trained model from `loan_default_model.pkl` (produced by running `model2_loan_default_prediction.py`) — no retraining needed to launch the app.
+
+---
+
+## 🎬 Demo
+
+Screenshots of the Streamlit app (`app.py`) predicting on two different applicant profiles:
+
+| High-Risk Applicant | Low-Risk Applicant |
+|---|---|
+| ![High-risk prediction result](screenshots/high-risk-result.png) | ![Low-risk prediction result](screenshots/low-risk-result.png) |
+| Prior loan defaults on file, lower credit score → flagged **⚠️ High risk of DEFAULT (71.8%)** | Master's education, owns home, no prior defaults → flagged **✅ Likely to REPAY ON TIME (0.8% default risk)** |
+
 ---
 
 ## 🧠 Key Technical Decisions
