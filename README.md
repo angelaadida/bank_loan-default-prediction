@@ -233,6 +233,23 @@ Screenshots of the Streamlit app (`app.py`) predicting on two different applican
 
 ---
 
+## 📊 Power BI Dashboard
+
+`loan_default_powerbi_dashboard.pbix` — a Power BI dashboard (Table, Pie chart, Card visuals) that scores a batch of customers via an embedded Python script, instead of predicting one applicant at a time like the Streamlit app.
+
+| File | Purpose |
+|------|---------|
+| `loan_default_powerbi_dashboard.pbix` | Power BI report — open in Power BI Desktop |
+| `sample_customers.csv` | 20-row sample dataset used as the Power Query source |
+| `power_bi_script.py` | Python script run inside Power Query (Transform → Run Python script) — loads `loan_default_model.pkl`, predicts on every row, and adds `risk_probability` and `risk_level` columns |
+
+**To reproduce:**
+1. Open `loan_default_powerbi_dashboard.pbix` in Power BI Desktop, or start a new report and load `sample_customers.csv` in Power Query.
+2. In Power Query Editor: **Transform → Run Python script**, paste the contents of `power_bi_script.py` (update the model path if needed).
+3. Power BI reads back the `dataset` variable with `risk_probability` (%) and `risk_level` (Cao/Thấp, 50% threshold) added, ready to drive the Table, Pie chart, and Card visuals.
+
+---
+
 ## 🧠 Key Technical Decisions
 
 | Decision | Why |

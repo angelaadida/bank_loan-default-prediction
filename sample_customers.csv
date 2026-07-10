@@ -1,0 +1,21 @@
+age,gender,annual_income,education,years_employment,home_ownership,credit_score,loan_intent,credit_history_length,previous_defaults
+23,female,28000,High School,1,RENT,580,PERSONAL,2,Yes
+45,male,95000,Bachelor,20,MORTGAGE,780,VENTURE,18,No
+31,male,42000,Associate,6,RENT,610,DEBTCONSOLIDATION,5,Yes
+52,female,120000,Master,25,OWN,810,HOMEIMPROVEMENT,22,No
+27,female,35000,Bachelor,3,RENT,650,EDUCATION,4,No
+38,male,58000,High School,10,MORTGAGE,590,PERSONAL,9,Yes
+29,male,150000,Doctorate,4,OWN,760,VENTURE,3,No
+41,female,47000,Associate,15,RENT,560,DEBTCONSOLIDATION,12,Yes
+35,male,72000,Bachelor,9,MORTGAGE,700,MEDICAL,8,No
+22,female,21000,High School,0,RENT,540,PERSONAL,1,Yes
+60,male,88000,Master,35,OWN,790,HOMEIMPROVEMENT,30,No
+26,female,39000,Bachelor,2,RENT,620,EDUCATION,2,No
+48,male,54000,High School,22,MORTGAGE,570,DEBTCONSOLIDATION,20,Yes
+33,female,105000,Master,7,OWN,740,VENTURE,6,No
+44,male,31000,Associate,12,RENT,530,PERSONAL,10,Yes
+50,female,98000,Doctorate,18,MORTGAGE,800,MEDICAL,16,No
+24,male,26000,High School,1,RENT,600,PERSONAL,1,No
+37,female,64000,Bachelor,11,MORTGAGE,680,HOMEIMPROVEMENT,9,No
+55,male,45000,Associate,28,OTHER,555,DEBTCONSOLIDATION,25,Yes
+29,female,82000,Bachelor,5,OWN,720,VENTURE,4,No
