@@ -237,6 +237,10 @@ Screenshots of the Streamlit app (`app.py`) predicting on two different applican
 
 `loan_default_powerbi_dashboard.pbix` — a Power BI dashboard (Table, Pie chart, Card visuals) that scores a batch of customers via an embedded Python script, instead of predicting one applicant at a time like the Streamlit app.
 
+![Power BI dashboard overview](screenshots/powerbi_dashboard.png)
+
+Dashboard gồm: bảng chi tiết khách hàng, biểu đồ tròn tỷ lệ rủi ro Cao/Thấp, thẻ đếm số khách hàng rủi ro cao, biểu đồ cột rủi ro trung bình theo mục đích vay (loan intent), và biểu đồ scatter credit score vs. risk probability.
+
 | File | Purpose |
 |------|---------|
 | `loan_default_powerbi_dashboard.pbix` | Power BI report — open in Power BI Desktop |
