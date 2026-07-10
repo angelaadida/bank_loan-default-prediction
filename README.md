@@ -239,7 +239,7 @@ Screenshots of the Streamlit app (`app.py`) predicting on two different applican
 
 ![Power BI dashboard overview](screenshots/powerbi_dashboard.png)
 
-Dashboard gồm: bảng chi tiết khách hàng, biểu đồ tròn tỷ lệ rủi ro Cao/Thấp, thẻ đếm số khách hàng rủi ro cao, biểu đồ cột rủi ro trung bình theo mục đích vay (loan intent), và biểu đồ scatter credit score vs. risk probability.
+The dashboard includes: a detailed customer table, a pie chart of the High/Low risk split, a card counting high-risk customers, a bar chart of average risk by loan intent, and a scatter plot of credit score vs. risk probability.
 
 | File | Purpose |
 |------|---------|
@@ -250,7 +250,7 @@ Dashboard gồm: bảng chi tiết khách hàng, biểu đồ tròn tỷ lệ r�
 **To reproduce:**
 1. Open `loan_default_powerbi_dashboard.pbix` in Power BI Desktop, or start a new report and load `sample_customers.csv` in Power Query.
 2. In Power Query Editor: **Transform → Run Python script**, paste the contents of `power_bi_script.py` (update the model path if needed).
-3. Power BI reads back the `dataset` variable with `risk_probability` (%) and `risk_level` (Cao/Thấp, 50% threshold) added, ready to drive the Table, Pie chart, and Card visuals.
+3. Power BI reads back the `dataset` variable with `risk_probability` (%) and `risk_level` (`'Cao'` (High) / `'Thấp'` (Low), 50% threshold) added, ready to drive the Table, Pie chart, and Card visuals.
 
 ---
 
