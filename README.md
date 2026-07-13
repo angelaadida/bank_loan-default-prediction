@@ -254,6 +254,14 @@ The dashboard includes: a detailed customer table, a pie chart of the High/Low r
 
 ---
 
+## 🤖 AI-Powered Risk Reasoning (Claude API)
+
+`evaluate_loan_risk_api.py` uses the Claude API to provide a human-readable risk explanation for new loan applications, complementing the quantitative ML prediction from the XGBoost model above. For each application, it sends the applicant's data to Claude and asks it to return a risk level (low/medium/high) along with a short, plain-English reason, giving underwriters a qualitative reasoning layer alongside the model's numeric probability. Sample applications used for this script live in `loan_applications_sample.json` and are simulated data, not real customer records.
+
+**To run it:** set the `ANTHROPIC_API_KEY` environment variable with your own Anthropic API key, then run `python evaluate_loan_risk_api.py`.
+
+---
+
 ## 🧠 Key Technical Decisions
 
 | Decision | Why |
