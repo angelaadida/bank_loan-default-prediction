@@ -258,7 +258,14 @@ The dashboard includes: a detailed customer table, a pie chart of the High/Low r
 
 `evaluate_loan_risk_api.py` uses the Claude API to provide a human-readable risk explanation for new loan applications, complementing the quantitative ML prediction from the XGBoost model above. For each application, it sends the applicant's data to Claude and asks it to return a risk level (low/medium/high) along with a short, plain-English reason, giving underwriters a qualitative reasoning layer alongside the model's numeric probability. Sample applications used for this script live in `loan_applications_sample.json` and are simulated data, not real customer records.
 
-**Logging & error handling:** each application is processed inside a `try/except` block, so one failed or malformed response doesn't stop the whole batch — it's logged with `risk_level: "error"` and processing continues. Instead of printing results to the console, the script writes a `report.json` file (with a `generated_at` timestamp, `total_applications`, and per-application results) so the run leaves an audit trail suitable for unattended/automated execution. `report.json` is a generated output, not source code, so it's excluded via `.gitignore`.
+**Automated workflow:** the script has been upgraded to run unattended, with no one watching it in real time. It includes:
+- **Automatic logging to `report.json`** with a `generated_at` timestamp, `total_applications`, and per-application results — an audit trail for every run.
+- **Per-application error handling**, so one failed or malformed response doesn't stop the whole batch — it's logged with `risk_level: "error"` and processing continues.
+- **Human approval flagging** for high-risk applications — a `status: "pending_approval"` is added to any `risk_level: "high"` result, and `pending_approval_count` is tracked in the report. No automatic alerts are ever sent; a human must review `report.json` manually.
+- **A safety limit on applications processed per run** (`MAX_APPLICATIONS_PER_RUN`), plus `api_calls_made` tracking in the report, to control cost.
+- **Runs automatically every Monday** via Windows Task Scheduler.
+
+`report.json` is a generated output, not source code, so it's excluded via `.gitignore`.
 
 **To run it:** set the `ANTHROPIC_API_KEY` environment variable with your own Anthropic API key, then run `python evaluate_loan_risk_api.py`.
 
